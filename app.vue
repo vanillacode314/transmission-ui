@@ -1,7 +1,4 @@
 <script setup lang="ts">
-const store = useStore();
-const { getID } = store;
-await getID();
 onBeforeMount(() => {
   document.documentElement.classList.add("dark");
 });

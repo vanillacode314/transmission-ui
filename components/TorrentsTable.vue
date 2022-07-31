@@ -12,8 +12,7 @@ export interface Torrent {
 import { storeToRefs } from "pinia";
 
 const store = useStore();
-const router = useRouter();
-const { runMethod } = store;
+const { runMethod, getID } = store;
 const { filters } = storeToRefs(store);
 const { notify } = useNotifications();
 
@@ -41,6 +40,7 @@ async function getTorrents() {
   }
 }
 
+await getID();
 await getTorrents();
 
 const statusMap = {
