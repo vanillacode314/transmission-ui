@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.1.29",
+    "@nuxtjs/tailwindcss": "^5.3.1",
+    "@unocss/nuxt": "^0.44.7",
+    "@vueuse/core": "^9.0.0",
+    "@vueuse/nuxt": "^9.0.0",
+    "nuxt": "3.0.0-rc.6",
+    "unplugin-icons": "^0.14.7"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.3.1",
+    "flowbite": "^1.5.1",
+    "pinia": "^2.0.17"
+  }
+}
