@@ -14,6 +14,7 @@ export default defineStore("notifications", () => {
     text: Message["text"],
     duration = 5000
   ) {
+    if (!window) return;
     const id = crypto.randomUUID();
     const message = {
       id,

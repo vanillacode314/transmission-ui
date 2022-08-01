@@ -8,6 +8,7 @@ export interface Torrent {
   status: number;
   rateUpload: number;
   rateDownload: number;
+  eta: number;
 }
 import { storeToRefs } from "pinia";
 
@@ -16,7 +17,7 @@ const { runMethod, getID } = store;
 const { filters } = storeToRefs(store);
 const { notify } = useNotifications();
 
-const { formatBytes, round } = useUtils();
+const { formatBytes, round, time_convert } = useUtils();
 
 let data: Ref<{ torrents: Torrent[] }> = ref({ torrents: [] });
 
@@ -31,6 +32,7 @@ async function getTorrents() {
         "status",
         "rateUpload",
         "rateDownload",
+        "eta",
       ],
     });
     setTimeout(getTorrents, 500);
@@ -78,6 +80,10 @@ const fields = [
     key: "uploadRate",
     label: "Up",
   },
+  {
+    key: "eta",
+    label: "ETA",
+  },
 ];
 
 const torrents = computed(() => data.value.torrents);
@@ -90,6 +96,7 @@ const items = computed(() =>
     status: t.status,
     downloadRate: t.rateDownload,
     uploadRate: t.rateUpload,
+    eta: t.eta,
   }))
 );
 
@@ -134,6 +141,13 @@ async function onClick(torrent: Torrent) {
           class="text-xs font-semibold text-gray-700 dark:text-gray-400 uppercase"
         >
           {{ formatBytes(value) }}/s
+        </div>
+      </template>
+      <template #cell(eta)="{ value }">
+        <div
+          class="text-xs font-semibold text-gray-700 dark:text-gray-400 uppercase"
+        >
+          {{ value > 0 ? time_convert(value) : "" }}
         </div>
       </template>
       <template #cell(uploadRate)="{ value }">

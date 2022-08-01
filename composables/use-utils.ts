@@ -17,6 +17,11 @@ function formatBytes(bytes: number): string {
   return `${round(bytes / Math.pow(1000, index))} ${byteMap[index]}`;
 }
 
+function time_convert(num: number): string {
+  var hours = Math.floor(num / 60);
+  var minutes = num % 60;
+  return hours + ":" + minutes;
+}
 export default () => {
-  return { log, formatBytes, round };
+  return { log, formatBytes, round, time_convert };
 };
