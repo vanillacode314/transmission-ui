@@ -5,6 +5,7 @@ interface Props {
   href?: string;
 }
 
+defineEmits(["click"]);
 defineProps<Props>();
 </script>
 <template>

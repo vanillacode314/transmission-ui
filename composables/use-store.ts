@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { FilterFunc } from "~~/components/base/Table.vue";
 
 export default defineStore("main", () => {
   const host = useLocalStorage<string>("host", "127.0.0.1");
@@ -6,7 +7,7 @@ export default defineStore("main", () => {
   const user = useLocalStorage<string>("user", null);
   const pass = useLocalStorage<string>("pass", null);
   const id = ref<string>(null);
-  const filters = ref<any[]>([]);
+  const filters = ref<FilterFunc[]>([]);
 
   async function getID() {
     const { id: i } = await $fetch<{ id: string }>(

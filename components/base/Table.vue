@@ -33,10 +33,10 @@ const props = defineProps({
   },
 });
 
-const widths = useLocalStorage(
-  `table-widths-${props.name}`,
-  new Array(props.fields.length).fill(300)
-);
+// const widths = useLocalStorage(
+//   `table-widths-${props.name}`,
+//   new Array(props.fields.length).fill(300)
+// );
 
 const displayedFieldKeys = computed(() => {
   return Object.entries(props.fields).map(([_key, value]) => value.key);
@@ -60,8 +60,7 @@ const sortedItems = computed(() =>
         : -1
     )
 );
-
-function setSort(field) {
+function setSort(field: TableField) {
   if (sortBy.value.key === field.key) {
     ascending.value = !ascending.value;
     return;
